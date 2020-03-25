@@ -1,0 +1,67 @@
+﻿<UserControl x:Class="Cyng.Views.OptionsView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Cyng.Views"
+             xmlns:base="clr-namespace:Cyng"
+             xmlns:views="clr-namespace:Cyng.Views"
+             xmlns:vm="clr-namespace:Cyng.ViewModels"
+             mc:Ignorable="d"
+             base:ViewModelLocator.ViewModel="True"
+             d:DataContext="{d:DesignInstance {x:Type vm:OptionsViewModel}}"
+             d:DesignWidth="1600" d:DesignHeight="900">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary 
+                Source="/Styles/StylesTemplate.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </UserControl.Resources>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="3*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="3*"/>
+            <RowDefinition Height="3*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <TextBlock Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" Text="USTAWIENIA" VerticalAlignment="Center" Style="{StaticResource Header}"/>
+        <StackPanel Grid.Row="1" Grid.Column="0">
+            <TextBlock Style="{StaticResource Header2}" Text="Strony"/>
+            <ListBox Style="{StaticResource CyngListBox}" Width="900" Height="180" Margin="10" FontSize="20" ItemsSource="{Binding WebsitesList, UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding SelectedWebsite}"/>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                <TextBox Width="750" Margin="0 0 25 0" Height="50" FontSize="30" Text="{Binding WebsiteText}"/>
+                <Button Width="125" Height="50" Content="Dodaj" FontSize="30" Command="{Binding AddWebsiteCommand}"/>
+            </StackPanel>
+        </StackPanel>
+        <StackPanel Grid.Row="2" Grid.Column="0" Margin="0 0 0 0">
+            <TextBlock Style="{StaticResource Header2}" Text="Słowa Kluczowe"/>
+            <ListBox Style="{StaticResource CyngListBox}" Width="900" Height="180" Margin="10" FontSize="20" ItemsSource="{Binding KeywordsList, UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding SelectedKeyword}" />
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                <TextBox Width="750" Margin="0 0 25 25" Height="50" FontSize="30" Text="{Binding KeywordText}"/>
+                <Button Width="125" Height="50" Margin="0 0 0 25" Content="Dodaj" FontSize="30" Command="{Binding AddKeywordCommand}"/>
+            </StackPanel>
+        </StackPanel>
+        <StackPanel Grid.Row="1" Grid.Column="1" VerticalAlignment="Bottom" HorizontalAlignment="Left">
+            <Button Width="150" Height="75" Margin="10" Content="Importuj" FontSize="35" Command="{Binding ImportWebsitesCommand}"/>
+            <Button Width="150" Height="75" Margin="10" Content="Eksportuj" FontSize="35" Command="{Binding ExportWebsitesCommand}"/>
+            <Button Width="150" Height="75" Margin="10" Content="Usuń" FontSize="35" Command="{Binding RemoveWebsiteCommand}"/>
+        </StackPanel>
+        <StackPanel Grid.Row="2" Grid.Column="1" VerticalAlignment="Bottom" HorizontalAlignment="Left">
+            <Button Width="150" Height="75" Margin="10" Content="Importuj" FontSize="35" Command="{Binding ImportKeywordsCommand}"/>
+            <Button Width="150" Height="75" Margin="10" Content="Eksportuj" FontSize="35" Command="{Binding ExportKeywordsCommand}"/>
+            <Button Width="150" Height="75" Margin="10" Content="Usuń" FontSize="35" Command="{Binding RemoveKeywordCommand}"/>
+        </StackPanel>
+        <StackPanel Grid.Column="2" Grid.Row="2" Grid.RowSpan="2" VerticalAlignment="Bottom" Margin="0 0 0 30">
+            <Button Width="250" Height="100" Margin="0 30" Content="Zapisz jako&#x0a; domyślne" FontSize="30" Command="{Binding SaveCommand}"/>
+            <Button Width="250" Height="100" Margin="0 30" Content="Powrót" FontSize="40" Command="{Binding BackCommand}"/>
+        </StackPanel>
+        <TextBlock Style="{StaticResource RegularText}" Text="Wersja: 1.0" Grid.Row="4" VerticalAlignment="Bottom" Margin="10"/>
+    </Grid>
+</UserControl>

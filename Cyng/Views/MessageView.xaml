@@ -1,0 +1,32 @@
+﻿<UserControl x:Class="Cyng.Views.MessageView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Cyng.Views"
+             xmlns:base="clr-namespace:Cyng"
+             xmlns:views="clr-namespace:Cyng.Views"
+             xmlns:vm="clr-namespace:Cyng.ViewModels"
+             mc:Ignorable="d"
+             base:ViewModelLocator.ViewModel="True"
+             d:DataContext="{d:DesignInstance {x:Type vm:MainWindowViewModel}}"
+             Width="800" Height="400" Background="Black" BorderBrush="White" BorderThickness="3">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary 
+                Source="/Styles/StylesTemplate.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </UserControl.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="2*"/>
+            <RowDefinition Height="4*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <TextBlock Style="{StaticResource Header}" Grid.Row="0" Text="{Binding MessageType}"/>
+        <TextBlock Style="{StaticResource RegularText}" Grid.Row="1" Text="{Binding MessageText}" TextAlignment="Center"/>
+        <Button Content="OK" Width="100" Height="50" Grid.Row="2" FontSize="30" HorizontalAlignment="Right" Margin="0 0 20 0" Command="{Binding BackCommand}"/>
+    </Grid>
+</UserControl>
